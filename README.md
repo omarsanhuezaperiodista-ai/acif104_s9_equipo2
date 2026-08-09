@@ -45,6 +45,15 @@ La estructura esperada es:
     ├── spotify_artistas_chile_eda.ipynb
     ├── requirements.txt
     ├── README.md
+    ├── resultados_arquitecturas/
+    │   ├── comparacion_arquitecturas.json
+    │   ├── resumen_arquitecturas.md
+    │   ├── MLP_16_8_perdida.png
+    │   ├── MLP_16_8_exactitud.png
+    │   ├── MLP_32_16_perdida.png
+    │   ├── MLP_32_16_exactitud.png
+    │   ├── MLP_1_capa_perdida.png
+    │   └── MLP_1_capa_exactitud.png
     └── universal_top_spotify_songs.csv
 
 ## Objetivo del proyecto
@@ -112,6 +121,10 @@ Es importante que el archivo:
     universal_top_spotify_songs.csv
 
 esté ubicado en la misma carpeta que el notebook.
+
+## Reproducibilidad
+
+`requirements.txt` fija las versiones de las librerías utilizadas y los resultados publicados se generaron con Python 3.11.9. Las métricas exactas de entrenamiento pueden variar levemente al usar otra versión de Python o un procesador diferente. Debido a que las diferencias entre las arquitecturas son pequeñas, tanto las métricas como el orden del ranking podrían variar ligeramente entre entornos; por ello, no se presupone que la arquitectura seleccionada sea necesariamente la misma en todas las ejecuciones.
 
 ## Flujo metodológico
 
@@ -181,13 +194,17 @@ La comparación se realiza con métricas como:
 - F1-score.
 - AUC.
 
-### 8. Evaluación final
+### 8. Comparación experimental de tres arquitecturas MLP
 
-Luego de comparar las estrategias de balanceo, se selecciona el modelo con mejor equilibrio general en validación.
+Se comparan las arquitecturas `MLP_16_8`, `MLP_32_16` y `MLP_1_capa` usando el mismo conjunto de entrenamiento sobremuestreado y el mismo conjunto de validación. El modelo final se selecciona únicamente con validación, priorizando menor pérdida de validación, mayor F1 y mayor AUC. El conjunto de prueba no participa en esta selección y se reserva para la evaluación final.
+
+### 9. Evaluación final
+
+Luego de comparar las arquitecturas, se adopta el modelo seleccionado exclusivamente a partir del conjunto de validación.
 
 El modelo final se evalúa sobre el conjunto de prueba, utilizando métricas de clasificación y matriz de confusión.
 
-### 9. Explicabilidad con SHAP
+### 10. Explicabilidad con SHAP
 
 Se utiliza SHAP para interpretar qué variables influyen más en las predicciones del modelo.
 
@@ -199,32 +216,32 @@ Esto permite observar la importancia de variables como:
 - Apariciones en Chile.
 - Movimiento semanal promedio.
 
-### 10. Revisión de casos particulares
+### 11. Revisión de casos particulares
 
 Se revisan artistas específicos del conjunto de prueba para analizar si las predicciones son coherentes con sus métricas de desempeño digital en Spotify Chile.
 
-### 11. Limitaciones y mejoras futuras
+### 12. Limitaciones y mejoras futuras
 
 Se documentan las principales limitaciones del modelo y se proponen mejoras, como integrar datos de otras plataformas, redes sociales, ventas de entradas y características reales de eventos.
 
 ## Resultados principales
 
-El modelo seleccionado obtuvo un desempeño alto sobre el conjunto de prueba.
+Modelo seleccionado: MLP_16_8
 
-Métricas finales:
+Resultados sobre los 71 artistas del conjunto de prueba:
 
-    Accuracy:  0.9878
+    Accuracy:  0.9859
     Precision: 1.0000
-    Recall:    0.9706
-    F1-score:  0.9851
-    AUC:       1.0000
+    Recall:    0.9697
+    F1-score:  0.9846
+    AUC:       0.9992
 
 Matriz de confusión:
 
-    [[48  0]
-     [ 1 33]]
+    [[38, 0],
+     [1, 32]]
 
-Estos resultados indican que el modelo logra reproducir adecuadamente la etiqueta técnica construida a partir de los clusters. Sin embargo, no deben interpretarse como una medición directa de convocatoria real.
+Estos resultados corresponden a los 71 artistas del conjunto de prueba y a la ejecución incluida en el repositorio. Indican que el modelo logra reproducir adecuadamente la etiqueta técnica construida a partir de los clusters. Sin embargo, no deben interpretarse como una medición directa de convocatoria real.
 
 ## Explicabilidad del modelo
 
@@ -284,7 +301,7 @@ Como mejoras futuras se propone:
 
 - Incorporar datos de venta de entradas y asistencia real.
 - Integrar fuentes externas como YouTube, Apple Music, TikTok, Instagram, Billboard y rankings radiales.
-- Separar colaboraciones para analizar artistas individuales.
+- Mejorar la desambiguación de nombres artísticos y la identificación de colaboraciones con reglas más robustas que una separación por comas.
 - Aplicar validación cruzada.
 - Comparar con otros modelos como Random Forest, Gradient Boosting o regresión logística.
 - Desarrollar una aplicación funcional con backend y frontend conectados.
