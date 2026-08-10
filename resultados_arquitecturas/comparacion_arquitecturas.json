@@ -1,0 +1,96 @@
+{
+  "versiones": {
+    "python": "3.11.9",
+    "tensorflow": "2.21.0",
+    "numpy": "2.3.5",
+    "scikit-learn": "1.9.0",
+    "pandas": "3.0.5",
+    "scipy": "1.17.1",
+    "matplotlib": "3.11.1",
+    "shap": "0.51.0",
+    "tqdm": "4.70.0",
+    "ipywidgets": "8.1.8"
+  },
+  "semilla": 42,
+  "datos_entrenamiento": "X_train_over, y_train_over",
+  "datos_seleccion": "X_val_scaled, y_val",
+  "conjunto_prueba_usado_en_seleccion": false,
+  "batch_size": 32,
+  "max_epocas": 150,
+  "early_stopping": {
+    "monitor": "val_loss",
+    "patience": 10,
+    "min_delta": 0.0001,
+    "restore_best_weights": true
+  },
+  "umbral_clasificacion": 0.5,
+  "criterios_orden": [
+    "menor loss_validacion",
+    "mayor f1",
+    "mayor auc"
+  ],
+  "tolerancia_equivalencia": 0.001,
+  "desempate": "menor cantidad de parámetros y capas ocultas",
+  "modelo_seleccionado": "MLP_16_8",
+  "resultados": [
+    {
+      "modelo": "MLP_16_8",
+      "capas_ocultas": [
+        16,
+        8
+      ],
+      "dropout": 0.3,
+      "learning_rate": 0.001,
+      "parametros": 289,
+      "epocas_ejecutadas": 126,
+      "mejor_epoca": 116,
+      "loss_validacion": 0.023691201582551003,
+      "accuracy": 0.9857142567634583,
+      "precision": 1.0,
+      "recall": 0.9696969696969697,
+      "f1": 0.9846153846153847,
+      "auc": 1.0,
+      "brecha_loss_val_menos_train": -5.59929758310318e-05,
+      "brecha_accuracy_train_menos_val": 0.005276739597320557
+    },
+    {
+      "modelo": "MLP_1_capa",
+      "capas_ocultas": [
+        16
+      ],
+      "dropout": 0.2,
+      "learning_rate": 0.002,
+      "parametros": 161,
+      "epocas_ejecutadas": 127,
+      "mejor_epoca": 117,
+      "loss_validacion": 0.028673475608229637,
+      "accuracy": 0.9857142567634583,
+      "precision": 1.0,
+      "recall": 0.9696969696969697,
+      "f1": 0.9846153846153847,
+      "auc": 0.9991809991809991,
+      "brecha_loss_val_menos_train": 0.007962051779031754,
+      "brecha_accuracy_train_menos_val": 0.014285743236541748
+    },
+    {
+      "modelo": "MLP_32_16",
+      "capas_ocultas": [
+        32,
+        16
+      ],
+      "dropout": 0.4,
+      "learning_rate": 0.0005,
+      "parametros": 833,
+      "epocas_ejecutadas": 141,
+      "mejor_epoca": 131,
+      "loss_validacion": 0.036272082477808,
+      "accuracy": 0.9857142567634583,
+      "precision": 1.0,
+      "recall": 0.9696969696969697,
+      "f1": 0.9846153846153847,
+      "auc": 0.9991809991809991,
+      "brecha_loss_val_menos_train": 0.016889896243810654,
+      "brecha_accuracy_train_menos_val": 0.014285743236541748
+    }
+  ]
+}
