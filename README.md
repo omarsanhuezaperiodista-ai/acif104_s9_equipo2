@@ -54,6 +54,12 @@ La estructura esperada es:
     │   ├── MLP_32_16_exactitud.png
     │   ├── MLP_1_capa_perdida.png
     │   └── MLP_1_capa_exactitud.png
+    ├── resultados_refinamiento/
+    │   ├── comparacion_refinamiento.json
+    │   ├── resumen_refinamiento.md
+    │   ├── MLP_16_8_D025_{perdida,exactitud}.png
+    │   ├── MLP_16_8_D030_{perdida,exactitud}.png
+    │   └── MLP_16_8_D035_{perdida,exactitud}.png
     └── universal_top_spotify_songs.csv
 
 ## Objetivo del proyecto

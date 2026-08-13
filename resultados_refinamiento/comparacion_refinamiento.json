@@ -1,0 +1,139 @@
+{
+  "versiones": {
+    "python": "3.11.9",
+    "tensorflow": "2.21.0",
+    "numpy": "2.3.5",
+    "scikit-learn": "1.9.0",
+    "pandas": "3.0.5",
+    "scipy": "1.17.1",
+    "matplotlib": "3.11.1",
+    "shap": "0.51.0",
+    "tqdm": "4.70.0",
+    "ipywidgets": "8.1.8"
+  },
+  "semilla": 42,
+  "datos_entrenamiento": "X_train_over, y_train_over",
+  "datos_seleccion": "X_val_scaled, y_val",
+  "conjunto_prueba_usado_en_seleccion": false,
+  "batch_size": 32,
+  "max_epocas": 150,
+  "early_stopping": {
+    "monitor": "val_loss",
+    "patience": 10,
+    "min_delta": 0.0001,
+    "restore_best_weights": true
+  },
+  "umbral_clasificacion": 0.5,
+  "criterios_orden": [
+    "menor loss_validacion",
+    "mayor f1_validacion",
+    "mayor auc_validacion"
+  ],
+  "tolerancia_equivalencia": 0.001,
+  "desempate": "menores brechas absolutas train-validación y, si persiste, Dropout más cercano a la configuración 0.30",
+  "configuraciones": [
+    {
+      "nombre": "MLP_16_8_D025",
+      "capas_ocultas": [
+        16,
+        8
+      ],
+      "dropout": 0.25,
+      "learning_rate": 0.001,
+      "archivo_perdida": "MLP_16_8_D025_perdida.png",
+      "archivo_exactitud": "MLP_16_8_D025_exactitud.png"
+    },
+    {
+      "nombre": "MLP_16_8_D030",
+      "capas_ocultas": [
+        16,
+        8
+      ],
+      "dropout": 0.3,
+      "learning_rate": 0.001,
+      "archivo_perdida": "MLP_16_8_D030_perdida.png",
+      "archivo_exactitud": "MLP_16_8_D030_exactitud.png"
+    },
+    {
+      "nombre": "MLP_16_8_D035",
+      "capas_ocultas": [
+        16,
+        8
+      ],
+      "dropout": 0.35,
+      "learning_rate": 0.001,
+      "archivo_perdida": "MLP_16_8_D035_perdida.png",
+      "archivo_exactitud": "MLP_16_8_D035_exactitud.png"
+    }
+  ],
+  "modelo_seleccionado": "MLP_16_8_D030",
+  "conclusion": "El refinamiento confirmó la configuración previamente seleccionada. Las variaciones de Dropout 0.25 y 0.35 no produjeron una mejora suficiente en validación para justificar el cambio del modelo final.",
+  "resultados": [
+    {
+      "modelo": "MLP_16_8_D035",
+      "capas_ocultas": [
+        16,
+        8
+      ],
+      "dropout": 0.35,
+      "learning_rate": 0.001,
+      "parametros": 289,
+      "epocas_ejecutadas": 138,
+      "mejor_epoca": 128,
+      "loss_entrenamiento": 0.0224179756,
+      "loss_validacion": 0.022896152,
+      "brecha_loss_val_menos_train": 0.0004781764,
+      "accuracy_entrenamiento": 0.9909909964,
+      "accuracy_validacion": 0.9857142568,
+      "brecha_accuracy_train_menos_val": 0.0052767396,
+      "precision_validacion": 1.0,
+      "recall_validacion": 0.9696969697,
+      "f1_validacion": 0.9846153846,
+      "auc_validacion": 1.0
+    },
+    {
+      "modelo": "MLP_16_8_D030",
+      "capas_ocultas": [
+        16,
+        8
+      ],
+      "dropout": 0.3,
+      "learning_rate": 0.001,
+      "parametros": 289,
+      "epocas_ejecutadas": 126,
+      "mejor_epoca": 116,
+      "loss_entrenamiento": 0.0237471946,
+      "loss_validacion": 0.0236912016,
+      "brecha_loss_val_menos_train": -5.5993e-05,
+      "accuracy_entrenamiento": 0.9909909964,
+      "accuracy_validacion": 0.9857142568,
+      "brecha_accuracy_train_menos_val": 0.0052767396,
+      "precision_validacion": 1.0,
+      "recall_validacion": 0.9696969697,
+      "f1_validacion": 0.9846153846,
+      "auc_validacion": 1.0
+    },
+    {
+      "modelo": "MLP_16_8_D025",
+      "capas_ocultas": [
+        16,
+        8
+      ],
+      "dropout": 0.25,
+      "learning_rate": 0.001,
+      "parametros": 289,
+      "epocas_ejecutadas": 117,
+      "mejor_epoca": 107,
+      "loss_entrenamiento": 0.0242728442,
+      "loss_validacion": 0.0247943606,
+      "brecha_loss_val_menos_train": 0.0005215164,
+      "accuracy_entrenamiento": 0.9909909964,
+      "accuracy_validacion": 0.9857142568,
+      "brecha_accuracy_train_menos_val": 0.0052767396,
+      "precision_validacion": 1.0,
+      "recall_validacion": 0.9696969697,
+      "f1_validacion": 0.9846153846,
+      "auc_validacion": 1.0
+    }
+  ]
+}
