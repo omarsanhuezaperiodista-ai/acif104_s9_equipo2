@@ -1,0 +1,23 @@
+{
+    "modelo_final": "MLP_16_8_D030",
+    "tipo_modelo": "Perceptron Multicapa",
+    "capas_ocultas": [
+        16,
+        8
+    ],
+    "dropout": 0.3,
+    "learning_rate": 0.001,
+    "variables_modelo": [
+        "apariciones_chile",
+        "canciones_unicas_chile",
+        "rank_promedio_chile",
+        "popularidad_promedio",
+        "movimiento_diario_promedio",
+        "movimiento_semanal_promedio",
+        "permanencia_dias",
+        "puntaje_posicion_chile"
+    ],
+    "numero_clusters": 4,
+    "descripcion_objetivo": "Clasificacion tecnica de mayor o menor señal digital local basada en rankings de Spotify Chile.",
+    "advertencia": "La salida no representa convocatoria real, venta de entradas ni asistencia a eventos."
+}

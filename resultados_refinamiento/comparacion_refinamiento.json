@@ -1,15 +1,15 @@
 {
   "versiones": {
-    "python": "3.11.9",
+    "python": "3.13.14",
     "tensorflow": "2.21.0",
     "numpy": "2.3.5",
     "scikit-learn": "1.9.0",
-    "pandas": "3.0.5",
-    "scipy": "1.17.1",
-    "matplotlib": "3.11.1",
-    "shap": "0.51.0",
+    "pandas": "3.0.3",
+    "scipy": "1.18.0",
+    "matplotlib": "3.11.0",
+    "shap": "0.52.0",
     "tqdm": "4.70.0",
-    "ipywidgets": "8.1.8"
+    "ipywidgets": "no disponible"
   },
   "semilla": 42,
   "datos_entrenamiento": "X_train_over, y_train_over",
