@@ -106,13 +106,22 @@ Para ejecutar desde cero el notebook, el archivo debe descargarse desde Kaggle y
 El filtrado inicial del mercado chileno produjo:
 
 - **29.105 registros iniciales.**
-- **540 canciones únicas.**
+- **599 canciones únicas identificadas mediante `spotify_id`.**
+- **540 nombres distintos de canciones.**
 - **408 valores originales en la columna `artists`.**
-- **29.103 registros utilizados tras la limpieza.**
-- **20.099 registros correspondientes a colaboraciones o combinaciones de artistas.**
+- **29.103 registros utilizados después de la depuración.**
+- **597 canciones únicas identificadas mediante `spotify_id` después de la depuración.**
+- **20.099 registros correspondientes a colaboraciones o combinaciones de artistas antes de la expansión.**
+- **59.232 registros después de individualizar los participantes de las colaboraciones.**
 - **351 entidades artísticas individualizadas como unidad final de análisis.**
 
+La diferencia entre los **540 nombres distintos de canciones** y los **599 identificadores únicos de Spotify** se debe a que el nombre visible de una canción no constituye por sí solo un identificador único. Para el análisis se utiliza `spotify_id` como criterio para identificar canciones únicas.
+
+Después de la depuración se conservaron **597 `spotify_id` únicos**.
+
 Las colaboraciones fueron separadas para representar individualmente a cada participante. Se utilizó un criterio de atribución completa de la información asociada a la aparición de cada canción.
+
+La expansión de las colaboraciones incrementó el número de filas desde 29.103 registros depurados hasta 59.232 registros individualizados, debido a que una misma aparición puede generar una fila para cada artista participante.
 
 ---
 
@@ -310,13 +319,36 @@ country = CL
 
 para concentrar el análisis en el mercado chileno.
 
+El subconjunto inicial contiene:
+
+```text
+29.105 registros
+599 spotify_id únicos
+540 nombres distintos de canciones
+408 valores originales de artists
+```
+
+Después de la depuración se obtienen:
+
+```text
+29.103 registros
+597 spotify_id únicos
+408 valores originales de artists
+```
+
 ### 3. Tratamiento de artistas y colaboraciones
 
 La columna `artists` puede contener un artista individual, un grupo o una combinación de artistas.
 
 Las colaboraciones fueron separadas por participante y posteriormente expandidas para construir una unidad de análisis individualizada por artista.
 
-El resultado final corresponde a:
+La expansión genera:
+
+```text
+59.232 registros individualizados
+```
+
+que posteriormente son agregados para obtener:
 
 ```text
 351 entidades artísticas
@@ -334,6 +366,8 @@ Se generan ocho variables agregadas por artista:
 - Movimiento semanal promedio.
 - Permanencia en días.
 - Puntaje de posición en Chile.
+
+Las canciones únicas son identificadas utilizando `spotify_id`.
 
 ### 5. Estandarización
 
@@ -443,7 +477,7 @@ Se evaluaron tres modelos clásicos:
 
 Logistic Regression obtuvo el mayor F1-score entre los modelos clásicos.
 
-Random Forest fue conservado como referencia no lineal para comparar posteriormente con la red neuronal.
+Random Forest fue conservado como referencia no lineal frente al modelo MLP.
 
 ---
 
@@ -550,7 +584,7 @@ El sobremuestreo fue seleccionado porque:
 
 ## Resultados principales
 
-El modelo final fue evaluado una única vez sobre los:
+El modelo final fue evaluado sobre los:
 
 ```text
 71 artistas
